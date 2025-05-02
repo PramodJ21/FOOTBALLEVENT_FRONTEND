@@ -1,0 +1,46 @@
+.event-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, #003a56, #1c2a40);
+  color: #fff;
+  padding: 60px 20px;
+  border-radius: 15px;
+  margin-top: 40px;
+}
+
+.left-image, .right-image {
+  width: 45%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.left-image {
+  background-image: url('/barcelona_fans.jpg'); /* Image of Barcelona fans */
+}
+
+.right-image {
+  background-image: url('/inter_milan_fans.jpg'); /* Image of Inter Milan fans */
+}
+
+.details-container {
+  width: 40%;
+  text-align: center;
+}
+
+.match-time p {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.highlight {
+  font-size: 22px;
+  font-weight: bold;
+  color: #f59e42;
+  margin-top: 20px;
+}
+
+.match-time i {
+  margin-right: 8px;
+}
