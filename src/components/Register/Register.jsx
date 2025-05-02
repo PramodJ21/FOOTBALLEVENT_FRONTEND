@@ -1,19 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
 
 const Register = () => {
-  const [participantCount, setParticipantCount] = useState(0);
-  const [participants, setParticipants] = useState([]);
-  const [stagCount, setStagCount] = useState(0);
-  const [coupleCount, setCoupleCount] = useState(0);
-  const [transactionId, setTransactionId] = useState("");
+  // Load saved data from localStorage when component mounts
+  const [participantCount, setParticipantCount] = useState(() => {
+    const saved = localStorage.getItem("participantCount");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  
+  const [participants, setParticipants] = useState(() => {
+    const saved = localStorage.getItem("participants");
+    return saved ? JSON.parse(saved) : [];
+  });
+  
+  const [stagCount, setStagCount] = useState(() => {
+    const saved = localStorage.getItem("stagCount");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  
+  const [coupleCount, setCoupleCount] = useState(() => {
+    const saved = localStorage.getItem("coupleCount");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  
+  const [transactionId, setTransactionId] = useState(() => {
+    return localStorage.getItem("transactionId") || "";
+  });
+  
+  const [email, setEmail] = useState(() => {
+    return localStorage.getItem("email") || "";
+  });
+  
   const [screenshotFile, setScreenshotFile] = useState(null);
-  const [showPayment, setShowPayment] = useState(false);
+  const [showPayment, setShowPayment] = useState(() => {
+    return localStorage.getItem("showPayment") === "true";
+  });
+  
   const [error, setError] = useState("");
   const [paymentError, setPaymentError] = useState("");
-  const [email, setEmail] = useState("");
+
+  // Save to localStorage whenever state changes
+  useEffect(() => {
+    localStorage.setItem("participantCount", participantCount);
+    localStorage.setItem("participants", JSON.stringify(participants));
+    localStorage.setItem("stagCount", stagCount);
+    localStorage.setItem("coupleCount", coupleCount);
+    localStorage.setItem("transactionId", transactionId);
+    localStorage.setItem("email", email);
+    localStorage.setItem("showPayment", showPayment);
+  }, [participantCount, participants, stagCount, coupleCount, transactionId, email, showPayment]);
 
   const resetForm = () => {
+    // Clear both state and localStorage
     setParticipantCount(0);
     setParticipants([]);
     setStagCount(0);
@@ -23,19 +61,31 @@ const Register = () => {
     setShowPayment(false);
     setError("");
     setPaymentError("");
+    setEmail("");
+    
+    localStorage.removeItem("participantCount");
+    localStorage.removeItem("participants");
+    localStorage.removeItem("stagCount");
+    localStorage.removeItem("coupleCount");
+    localStorage.removeItem("transactionId");
+    localStorage.removeItem("email");
+    localStorage.removeItem("showPayment");
   };
 
   const handleParticipantChange = (e) => {
     const count = parseInt(e.target.value, 10) || 0;
     setParticipantCount(count);
-    setParticipants(
-      Array.from({ length: count }, () => ({
-        name: "",
-        contact: "",
-        gender: "",
-        email: "",
-      }))
-    );
+    
+    // Create new array with the appropriate number of participants
+    // Preserve existing participant data when increasing the count
+    setParticipants(prevParticipants => {
+      const newParticipants = Array.from({ length: count }, (_, index) => {
+        return index < prevParticipants.length
+          ? prevParticipants[index]
+          : { name: "", contact: "", gender: "", email: "" };
+      });
+      return newParticipants;
+    });
   };
 
   const handleInputChange = (index, field, value) => {
@@ -73,7 +123,6 @@ const Register = () => {
         setError(`Invalid contact number for Participant ${i + 1}.`);
         return;
       }
-      
     }
     setError("");
     setShowPayment(true);
@@ -132,7 +181,6 @@ const Register = () => {
       .then(() => {
         resetForm();
         alert("Registration successful! Confirmation email sent. Please check your spam folder."); 
-
       })
       .catch(() => {
         setPaymentError("An error occurred during submission.");
@@ -230,49 +278,48 @@ const Register = () => {
 
       {showPayment && (
         <div className="payment-section">
-        <h2>Pay via UPI</h2>
-        <p>UPI ID: <strong>himanshuwankhede36@oksbi</strong></p>
-        <p>GPAY Number: <strong>+91 93227 71251</strong></p>
-        <img src="/gpayqr.jpeg" alt="UPI QR" className="upi-qr" />
-      
-        <form className="payment-form" onSubmit={handleRegisterSubmit}>
-          <label htmlFor="transactionId">UPI Transaction ID:</label>
-          <input
-            type="text"
-            id="transactionId"
-            placeholder="Enter UPI Transaction ID"
-            value={transactionId}
-            onChange={(e) => setTransactionId(e.target.value)}
-            required
-          />
-      
-          <label htmlFor="screenshot">Upload Payment Screenshot:</label>
-          <input
-            type="file"
-            name="screenshot"
-            accept="image/*"
-            onChange={(e) => setScreenshotFile(e.target.files[0])}
-            required
-          />
-      
-          <label htmlFor="email">Email ID:</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-      
-          {paymentError && (
-            <div className="error-message">{paymentError}</div>
-          )}
-      
-          <button type="submit">Payment Done</button>
-        </form>
-      </div>
-      
+          <h2>Pay via UPI</h2>
+          <p>UPI ID: <strong>himanshuwankhede36@oksbi</strong></p>
+          <p>GPAY Number: <strong>+91 93227 71251</strong></p>
+          <img src="/gpayqr.jpeg" alt="UPI QR" className="upi-qr" />
+        
+          <form className="payment-form" onSubmit={handleRegisterSubmit}>
+            <label htmlFor="transactionId">UPI Transaction ID:</label>
+            <input
+              type="text"
+              id="transactionId"
+              placeholder="Enter UPI Transaction ID"
+              value={transactionId}
+              onChange={(e) => setTransactionId(e.target.value)}
+              required
+            />
+        
+            <label htmlFor="screenshot">Upload Payment Screenshot:</label>
+            <input
+              type="file"
+              name="screenshot"
+              accept="image/*"
+              onChange={(e) => setScreenshotFile(e.target.files[0])}
+              required
+            />
+        
+            <label htmlFor="email">Email ID:</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+        
+            {paymentError && (
+              <div className="error-message">{paymentError}</div>
+            )}
+        
+            <button type="submit">Payment Done</button>
+          </form>
+        </div>
       )}
     </div>
   );
