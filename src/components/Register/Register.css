@@ -133,5 +133,68 @@
     margin-top: 10px;
   }
   
+  @media (max-width: 768px) {
+    .register-container {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .register-container h1 {
+      font-size: 24px;
+    }
+  
+    .ticket-section {
+      grid-template-columns: 1fr; /* Stack ticket fields vertically */
+      gap: 15px;
+    }
+  
+    .total-section {
+      font-size: 20px;
+    }
+  
+    .register-container button,
+    .payment-form button {
+      padding: 10px;
+      font-size: 16px;
+    }
+  
+    .payment-section {
+      padding: 20px;
+    }
+  
+    .upi-qr {
+      width: 150px;
+    }
+  
+    .participant-block input,
+    .participant-block select {
+      font-size: 14px;
+      padding: 0.4rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .register-container {
+      padding: 15px;
+    }
+  
+    .register-container h1 {
+      font-size: 20px;
+    }
+  
+    .total-section {
+      font-size: 18px;
+    }
+  
+    .register-container button,
+    .payment-form button {
+      font-size: 15px;
+      padding: 8px;
+    }
+  
+    .upi-qr {
+      width: 120px;
+    }
+  }
   
   
