@@ -12,6 +12,7 @@
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .team-logo {
@@ -39,4 +40,48 @@
   font-size: 16px;
   font-weight: 300;
   margin-top: 5px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .team-logo {
+    height: 90px;
+    width: 90px;
+  }
+
+  .match-details h1 {
+    font-size: 28px;
+  }
+
+  .match-stadium h2 {
+    font-size: 18px;
+  }
+
+  .match-stadium p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .team-logo {
+    height: 70px;
+    width: 70px;
+  }
+
+  .match-details h1 {
+    font-size: 22px;
+  }
+
+  .teams {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .match-stadium h2 {
+    font-size: 16px;
+  }
+
+  .match-stadium p {
+    font-size: 13px;
+  }
 }
