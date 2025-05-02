@@ -82,3 +82,60 @@
 .modal-close:hover {
   color: #ff0000;
 }
+
+@media (max-width: 768px) {
+  .call-to-action {
+    padding: 30px 20px;
+  }
+
+  .cta-container h2 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .cta-container h3 {
+    font-size: 22px;
+  }
+
+  .cta-offer {
+    font-size: 16px;
+  }
+
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 18px;
+  }
+
+  .modal-box {
+    padding: 25px;
+    width: 90%;
+    max-height: 85vh;
+  }
+
+  .modal-close {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-container h2 {
+    font-size: 24px;
+  }
+
+  .cta-container h3 {
+    font-size: 20px;
+  }
+
+  .cta-offer {
+    font-size: 15px;
+  }
+
+  .cta-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .modal-box {
+    padding: 20px;
+  }
+}
