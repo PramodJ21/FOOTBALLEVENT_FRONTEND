@@ -121,7 +121,7 @@ const Register = () => {
     formData.append("amountPaid", totalAmount);
     formData.append("screenshot", screenshotFile);
 
-    fetch("http://localhost:5000/api/register", {
+    fetch("https://footballevent-backend.onrender.com/api/register", {
       method: "POST",
       body: formData,
     })
