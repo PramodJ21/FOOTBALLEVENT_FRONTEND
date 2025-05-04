@@ -10,8 +10,8 @@ const CallToAction = () => {
       <section className="call-to-action">
         <div className="cta-container">
           <h2 className="cta-heading">WHAT ARE YOU WAITING FOR?</h2>
-          <h3 className="cta-subheading">JOIN THE THRILL OF THE MATCH ONLY AT 279/-</h3>
-          <p className="cta-offer">(Special offer for couples at 379/-)</p>
+          <h3 className="cta-subheading">JOIN THE THRILL OF THE MATCH ONLY AT 149/-</h3>
+          <p className="cta-offer">(Special offer for couples at 249/-)</p>
           <button className="cta-button" onClick={() => setShowRegister(true)}>
             Join the action now
           </button>
