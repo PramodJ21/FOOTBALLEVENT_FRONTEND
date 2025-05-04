@@ -38,6 +38,8 @@ const Register = () => {
   
   const [error, setError] = useState("");
   const [paymentError, setPaymentError] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
   // Save to localStorage whenever state changes
   useEffect(() => {
@@ -161,30 +163,32 @@ const Register = () => {
       return;
     }
     setPaymentError("");
+  setLoading(true); // start loading
 
-    const totalAmount = stagCount * 149 + coupleCount * 249;
-    const formData = new FormData();
-    formData.append("participants", JSON.stringify(participants));
-    formData.append("email", email);
-    formData.append("transactionId", transactionId);
-    formData.append("amountPaid", totalAmount);
-    formData.append("screenshot", screenshotFile);
+  const totalAmount = stagCount * 149 + coupleCount * 249;
+  const formData = new FormData();
+  formData.append("participants", JSON.stringify(participants));
+  formData.append("email", email);
+  formData.append("transactionId", transactionId);
+  formData.append("amountPaid", totalAmount);
+  formData.append("screenshot", screenshotFile);
 
-    fetch("https://footballevent-backend.onrender.com/api/register", {
-      method: "POST",
-      body: formData,
+  fetch("https://footballevent-backend.onrender.com/api/register", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Failed to register");
+      return res.json();
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to register");
-        return res.json();
-      })
-      .then(() => {
-        resetForm();
-        alert("Registration successful! Confirmation email sent. Please check your spam folder."); 
-      })
-      .catch(() => {
-        setPaymentError("An error occurred during submission.");
-      });
+    .then(() => {
+      resetForm();
+      alert("Registration successful! Confirmation email sent. Please check your spam folder.");
+    })
+    .catch(() => {
+      setPaymentError("An error occurred during submission.");
+    })
+    .finally(() => setLoading(false)); // stop loading
   };
 
   const totalAmount = stagCount * 149 + coupleCount * 249;
@@ -316,10 +320,15 @@ const Register = () => {
               <div className="error-message">{paymentError}</div>
             )}
         
-            <button type="submit">Payment Done</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Registering..." : "Payment Done"}
+        </button>
+
           </form>
         </div>
       )}
+      {loading && <div className="loading-overlay">Please wait...</div>}
+
     </div>
   );
 };
