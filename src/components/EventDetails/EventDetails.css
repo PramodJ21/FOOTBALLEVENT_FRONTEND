@@ -35,10 +35,20 @@
 }
 
 .highlight {
-  font-size: 22px;
-  font-weight: bold;
-  color: #f59e42;
-  margin-top: 20px;
+  color: #d32f2f;
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin: 1.5rem auto;
+  text-align: center;
+  background-color: #ffebee;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  border-left: 4px solid #d32f2f;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  display: inline-block;    /* Makes the background only as wide as the content */
+  max-width: 80%;           /* Controls the maximum width */
 }
 
 .match-time i {
