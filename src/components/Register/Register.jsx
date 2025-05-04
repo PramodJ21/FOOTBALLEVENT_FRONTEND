@@ -162,7 +162,7 @@ const Register = () => {
     }
     setPaymentError("");
 
-    const totalAmount = stagCount * 279 + coupleCount * 379;
+    const totalAmount = stagCount * 149 + coupleCount * 249;
     const formData = new FormData();
     formData.append("participants", JSON.stringify(participants));
     formData.append("email", email);
@@ -187,8 +187,7 @@ const Register = () => {
       });
   };
 
-  const totalAmount = stagCount * 279 + coupleCount * 379;
-
+  const totalAmount = stagCount * 149 + coupleCount * 249;
   return (
     <div className="register-container">
       <h1>Register Now</h1>
@@ -247,7 +246,7 @@ const Register = () => {
 
       <div className="ticket-section">
         <div>
-          <label htmlFor="stagCount">Stag (₹279 each):</label>
+          <label htmlFor="stagCount">Stag (₹149 each):</label>
           <input
             type="number"
             id="stagCount"
@@ -257,7 +256,7 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="coupleCount">Couple (₹379):</label>
+          <label htmlFor="coupleCount">Couple (₹249):</label>
           <input
             type="number"
             id="coupleCount"
