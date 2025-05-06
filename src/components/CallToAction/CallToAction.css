@@ -21,9 +21,23 @@
   font-weight: 500;
 }
 
-.cta-offer {
+.cta-ticket-prices {
+  margin-top: 20px;
   font-size: 18px;
-  margin-top: 10px;
+  color: #fff;
+}
+
+.cta-ticket-prices p {
+  font-weight: bold;
+}
+
+.cta-ticket-prices ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.cta-ticket-prices li {
+  margin: 5px 0;
 }
 
 .cta-button {
@@ -58,6 +72,7 @@
 
 .modal-box {
   position: relative; /* Important for positioning the close button */
+  width: 80%;
   background: #fff;
   padding: 40px;
   border-radius: 10px;
@@ -97,7 +112,7 @@
     font-size: 22px;
   }
 
-  .cta-offer {
+  .cta-ticket-prices {
     font-size: 16px;
   }
 
@@ -126,7 +141,7 @@
     font-size: 20px;
   }
 
-  .cta-offer {
+  .cta-ticket-prices {
     font-size: 15px;
   }
 
