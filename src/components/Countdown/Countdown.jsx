@@ -3,7 +3,7 @@ import "./Countdown.css";
 
 const CountdownTimer = () => {
   const calculateTimeLeft = () => {
-    const target = new Date("2025-05-07T00:00:00+05:30"); // 12:00 AM IST
+    const target = new Date("2025-05-11T19:45:00+05:30"); // 7:45 PM IST
     const now = new Date();
     const difference = target - now;
 
