@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: linear-gradient(135deg, #0A0E5F 0%, #0056A4 100%);
+  background: linear-gradient(to bottom, #003a56, #1c2a40); /* Gradient for header */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 10;
@@ -13,7 +13,7 @@
 
 .header-accent {
   height: 4px;
-  background: linear-gradient(90deg, #A50044 50%, #000000 50%);
+  background: linear-gradient(90deg, #A50044 50%, #000000 50%); /* Real Madrid & Barcelona colors */
   position: relative;
   z-index: 5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -99,13 +99,13 @@
 }
 
 .team-mini.barca {
-  background: linear-gradient(to right, rgba(10, 14, 95, 0.7), rgba(165, 0, 68, 0.7));
+  background: linear-gradient(to right, rgba(10, 14, 95, 0.7), rgba(165, 0, 68, 0.7)); /* Barcelona colors */
   border-left: 3px solid #F7B731;
 }
 
 .team-mini.inter {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 86, 164, 0.7));
-  border-right: 3px solid #ffffff;
+  background: linear-gradient(to right, #FFFFFF, #000000); /* Real Madrid colors (white to dark blue) */
+  border-right: 3px solid #FFD700; /* Gold border for accent */
 }
 
 .team-mini-logo {
