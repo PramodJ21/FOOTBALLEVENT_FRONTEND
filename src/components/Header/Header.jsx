@@ -19,8 +19,8 @@ const Header = () => (
         </div>
         <div className="versus-mini">VS</div>
         <div className="team-mini inter">
-          <img src="/milan_logo.png" alt="Inter Milan" className="team-mini-logo" />
-          <span className="team-mini-name">INT</span>
+          <img src="/madrid_flag.png" alt="Real Madrid" className="team-mini-logo" />
+          <span className="team-mini-name">RMA</span>
         </div>
       </div>
       
