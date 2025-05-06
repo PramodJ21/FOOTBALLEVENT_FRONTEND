@@ -102,11 +102,11 @@ const Register = () => {
       setError("Please enter the number of participants.");
       return;
     }
-    const calculated = stagCount + coupleCount * 2;
+    const calculated = stagCount + coupleCount;
     
     if (calculated !== participantCount) {
       setError(
-        `You've selected ${stagCount} stag(s) and ${coupleCount} couple(s), totaling ${calculated} participants, but entered ${participantCount}.`
+        `You've selected ${stagCount} single entry and ${coupleCount} single entry + food, totaling ${calculated} participants, but entered ${participantCount}.`
       );
       return;
     }
@@ -165,7 +165,7 @@ const Register = () => {
     setPaymentError("");
   setLoading(true); // start loading
 
-  const totalAmount = stagCount * 149 + coupleCount * 249;
+  const totalAmount = stagCount * 279 + coupleCount * 379; // Update the total amount calculation
   const formData = new FormData();
   formData.append("participants", JSON.stringify(participants));
   formData.append("email", email);
@@ -191,7 +191,7 @@ const Register = () => {
     .finally(() => setLoading(false)); // stop loading
   };
 
-  const totalAmount = stagCount * 149 + coupleCount * 249;
+  const totalAmount = stagCount * 279 + coupleCount * 379; // Update the total amount calculation
   return (
     <div className="register-container">
       <h1>Register Now</h1>
@@ -250,7 +250,7 @@ const Register = () => {
 
       <div className="ticket-section">
         <div>
-          <label htmlFor="stagCount">Stag (₹149 each):</label>
+          <label htmlFor="stagCount">Single Entry (₹279 each):</label>
           <input
             type="number"
             id="stagCount"
@@ -260,7 +260,7 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="coupleCount">Couple (₹249):</label>
+          <label htmlFor="coupleCount">Single Entry + Food (₹379):</label>
           <input
             type="number"
             id="coupleCount"
